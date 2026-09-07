@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compare Party Worldviews</title>
+  <meta name="description" content="Load up to ten saved worldview results and see the whole party plotted on one chart." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <div class="page">
+    <nav class="site-nav">
+      <a href="index.html" class="site-nav-link">Quiz</a>
+      <a href="compare.html" class="site-nav-link active">Compare Party</a>
+    </nav>
+
+    <header class="page-header">
+      <p class="eyebrow">Party Worldview Comparison</p>
+      <h1>Where Does Everyone Stand?</h1>
+      <p class="subtitle">
+        Add up to ten saved <code>-worldview.txt</code> results (from the quiz's
+        "Save My Results" button) to see the whole party plotted on one chart.
+      </p>
+    </header>
+
+    <main>
+      <section id="upload-section">
+        <div id="drop-zone" class="drop-zone">
+          <p>Drag &amp; drop saved results files here, or</p>
+          <div class="upload-controls">
+            <button type="button" id="add-characters">Add Character Files</button>
+            <span id="character-count" class="character-count">0 / 10 added</span>
+          </div>
+          <input type="file" id="file-input" accept=".txt,.json,application/json,text/plain" multiple hidden />
+        </div>
+        <p id="file-warning" class="file-warning" hidden></p>
+      </section>
+
+      <section id="results-section">
+        <div id="compare-chart-container" class="chart-container" aria-live="polite"></div>
+
+        <div id="layers-panel" class="layers-panel">
+          <div class="layers-header">
+            <h2>Layers</h2>
+            <p class="layers-hint">Drag a name up or down to change which dot renders in front when characters overlap.</p>
+          </div>
+          <ul id="character-list" class="character-list"></ul>
+        </div>
+        <p id="empty-state" class="empty-state">No characters added yet — the chart will fill in as you add results.</p>
+
+        <div class="results-actions">
+          <button type="button" id="download-combined-png" disabled>Download Combined PNG</button>
+          <button type="button" id="clear-all" class="secondary" hidden>Clear All</button>
+        </div>
+        <p class="dm-note">Characters sharing the exact same worldview are nudged apart slightly so every dot stays visible.</p>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>Two Axis Worldview Quiz — built for tabletop use.</p>
+    </footer>
+  </div>
+
+  <script src="common.js"></script>
+  <script src="compare.js"></script>
+</body>
+</html>
