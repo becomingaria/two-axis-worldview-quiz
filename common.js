@@ -207,8 +207,8 @@ function buildSingleChartSVG(axis1, axis2, characterName) {
     <rect class="chart-surface" x="${geo.left}" y="${geo.top}" width="${geo.plotW}" height="${geo.plotH}" />
     ${gridAndTicksSVG(geo)}
     ${quadrantLabelsSVG(geo, occupied)}
-    <text class="axis-title" x="${(geo.left + geo.right) / 2}" y="${geo.size - 12}" text-anchor="middle">AXIS II — PESSIMISTIC ↔ OPTIMISTIC</text>
-    <text class="axis-title" x="18" y="${(geo.top + geo.bottom) / 2}" text-anchor="middle" transform="rotate(-90 18 ${(geo.top + geo.bottom) / 2})">AXIS I — PRAGMATIC ↔ IDEALISTIC</text>
+    <text class="axis-title" x="${(geo.left + geo.right) / 2}" y="${geo.size - 12}" text-anchor="middle">AXIS II: PESSIMISTIC ↔ OPTIMISTIC</text>
+    <text class="axis-title" x="18" y="${(geo.top + geo.bottom) / 2}" text-anchor="middle" transform="rotate(-90 18 ${(geo.top + geo.bottom) / 2})">AXIS I: PRAGMATIC ↔ IDEALISTIC</text>
     <circle class="marker-ring" cx="${cx}" cy="${cy}" r="9" />
     <circle class="marker" cx="${cx}" cy="${cy}" r="7" />
     <text class="marker-label" x="${cx}" y="${nameY}" text-anchor="${labelAnchor}">${escapeXML(name)}</text>
@@ -281,8 +281,8 @@ function buildCompareChartSVG(entries) {
     <rect class="chart-surface" x="${geo.left}" y="${geo.top}" width="${geo.plotW}" height="${geo.plotH}" />
     ${gridAndTicksSVG(geo)}
     ${quadrantLabelsSVG(geo, occupied)}
-    <text class="axis-title" x="${(geo.left + geo.right) / 2}" y="${geo.size - 12}" text-anchor="middle">AXIS II — PESSIMISTIC ↔ OPTIMISTIC</text>
-    <text class="axis-title" x="18" y="${(geo.top + geo.bottom) / 2}" text-anchor="middle" transform="rotate(-90 18 ${(geo.top + geo.bottom) / 2})">AXIS I — PRAGMATIC ↔ IDEALISTIC</text>
+    <text class="axis-title" x="${(geo.left + geo.right) / 2}" y="${geo.size - 12}" text-anchor="middle">AXIS II: PESSIMISTIC ↔ OPTIMISTIC</text>
+    <text class="axis-title" x="18" y="${(geo.top + geo.bottom) / 2}" text-anchor="middle" transform="rotate(-90 18 ${(geo.top + geo.bottom) / 2})">AXIS I: PRAGMATIC ↔ IDEALISTIC</text>
     ${markers}
   </svg>`;
 }

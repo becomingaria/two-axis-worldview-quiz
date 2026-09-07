@@ -127,7 +127,7 @@ function init() {
     }
 
     if (overflow > 0) {
-      errors.push(`Only room for ${room} more — ${overflow} file${overflow === 1 ? "" : "s"} skipped (limit is ${MAX_CHARACTERS}).`);
+      errors.push(`Only room for ${room} more. ${overflow} file${overflow === 1 ? "" : "s"} skipped (limit is ${MAX_CHARACTERS}).`);
     }
     if (errors.length) {
       fileWarning.hidden = false;

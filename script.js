@@ -256,9 +256,9 @@ function scoreQuiz(formData) {
 function summaryText(characterName, axis1, axis2, archetype) {
   const name = characterName || "Your character";
   return [
-    `${name}'s Worldview — Two Axis Quiz`,
-    `Axis I (Ideas & Circumstance): ${formatScore(axis1)} — ${describeAxis(1, axis1)}`,
-    `Axis II (Optimism & Pessimism): ${formatScore(axis2)} — ${describeAxis(2, axis2)}`,
+    `${name}'s Worldview: Two Axis Quiz`,
+    `Axis I (Ideas & Circumstance): ${formatScore(axis1)} · ${describeAxis(1, axis1)}`,
+    `Axis II (Optimism & Pessimism): ${formatScore(axis2)} · ${describeAxis(2, axis2)}`,
     `Archetype: ${archetype.name}`,
   ].join("\n");
 }
@@ -267,12 +267,19 @@ function init() {
   buildForm();
 
   const form = document.getElementById("quiz-form");
+  const nameInput = document.getElementById("character-name");
   const quizSection = document.getElementById("quiz-section");
   const resultsSection = document.getElementById("results-section");
   let lastRecord = null;
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    if (!nameInput.value.trim()) {
+      nameInput.focus();
+      nameInput.closest(".name-row").scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
 
     const missing = QUIZ.find((q) => !form.elements[q.id].value);
     if (missing) {
@@ -291,8 +298,8 @@ function init() {
     document.getElementById("result-name").textContent = characterName || "Your character";
     document.getElementById("result-archetype-name").textContent = archetype.name;
     document.getElementById("result-archetype-blurb").textContent = archetype.blurb;
-    document.getElementById("result-axis1").textContent = `${formatScore(axis1)} — ${describeAxis(1, axis1)}`;
-    document.getElementById("result-axis2").textContent = `${formatScore(axis2)} — ${describeAxis(2, axis2)}`;
+    document.getElementById("result-axis1").textContent = `${formatScore(axis1)} · ${describeAxis(1, axis1)}`;
+    document.getElementById("result-axis2").textContent = `${formatScore(axis2)} · ${describeAxis(2, axis2)}`;
 
     document.getElementById("chart-container").innerHTML = buildSingleChartSVG(axis1, axis2, characterName);
 
@@ -324,7 +331,7 @@ function init() {
         button.textContent = "Copy Summary";
       }, 1800);
     } catch (err) {
-      button.textContent = "Copy failed — select & copy manually";
+      button.textContent = "Copy failed: select & copy manually";
     }
   });
 
