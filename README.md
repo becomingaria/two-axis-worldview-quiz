@@ -7,8 +7,11 @@ a dark, starlit "mysterious" theme.
 - **Axis I — Ideas & Circumstance**: Pragmatic to Idealistic (vertical, Idealistic at top)
 - **Axis II — Optimism & Pessimism**: Pessimistic to Optimistic (horizontal, Optimistic at right)
 
-Each axis totals -6..+6 from the raw scoring key, but everything shown to
-players is capped to **-4..+4** — anything past the cap displays as the cap.
+Each axis is the sum of its 3 questions (each worth -2..+2), so it totals
+**-6..+6** — that's also the range shown to players; a maxed-out answer sheet
+reads as a 6, not something smaller. Each axis is described in 8 sections (4
+escalating qualifiers per pole — Leans / Moderately / Firmly / Staunchly —
+covering magnitudes 1-6), plus a 9th "Balanced" state at exactly 0.
 
 Everything runs client-side (no backend, no build step, no dependencies) —
 just static HTML/CSS/JS, which is exactly what GitHub Pages serves.

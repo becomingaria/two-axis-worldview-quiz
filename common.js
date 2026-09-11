@@ -26,10 +26,12 @@ const ARCHETYPES = {
   },
 };
 
-// Each axis can total -6..+6 from the raw scoring key, but the chart and every
-// score shown to players is capped to -4..+4: anything past the cap displays as
-// the cap. Raw totals only ever pass through clampForDisplay before rendering.
-const DISPLAY_CAP = 4;
+// Each axis totals -6..+6 from the raw scoring key (three questions, each worth
+// -2..+2) — that natural range is also what's shown to players, so a maxed-out
+// answer sheet reads as a 6, not something smaller. clampForDisplay is a safety
+// clamp (e.g. against a hand-edited results file claiming an out-of-range score),
+// not a narrowing cap.
+const DISPLAY_CAP = 6;
 
 // A fixed, ordered set of hues for telling characters apart on the compare chart.
 // The first eight follow the studio's validated dark-surface categorical order;
@@ -73,12 +75,17 @@ function clampForDisplay(score) {
   return Math.max(-DISPLAY_CAP, Math.min(DISPLAY_CAP, score));
 }
 
+// Each axis is split into 8 sections — 4 escalating qualifiers on each pole,
+// covering raw magnitudes 1-6 — plus a 9th "Balanced" state at exactly 0 that
+// belongs to neither pole. Still computed from the same 3 questions per axis;
+// this only changes how that raw total is described.
 function intensity(score) {
   const magnitude = Math.abs(score);
   if (magnitude === 0) return "Balanced";
-  if (magnitude === 1) return "Leans";
-  if (magnitude === 2) return "";
-  return "Staunchly";
+  if (magnitude <= 2) return "Leans";
+  if (magnitude === 3) return "Moderately";
+  if (magnitude === 4) return "Firmly";
+  return "Staunchly"; // 5-6
 }
 
 function poleLabel(axis, score) {
